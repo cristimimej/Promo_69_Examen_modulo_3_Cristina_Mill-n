@@ -17,7 +17,7 @@ El análisis se divide en 4 fases consecutivas reflejadas en el script:
 ### 1. Limpieza y Preparación de Datos 🧼
 * **Unificación (Merge):** Se combinaron los datasets de actividad e historial mediante un `inner join` utilizando la clave común `Loyalty Number`.
 * **Tratamiento de Nulos y Tipos de Datos:**
-  * **Puntos Acumulados (`Points Accumulated`):** Limpieza de formatos de texto, manejo de valores faltantes y conversión final a tipo numérico (`float64`).
+  * **Puntos Acumulados (`Points Accumulated`):** Limpieza de formatos de texto y conversión final a tipo numérico (`float64`).
   * **Fechas de Cancelación (`Cancellation Year / Month`):** Los valores nulos se imputaron como `'Activo'` para diferenciar a los clientes vigentes.
   * **Salarios (`Salary`):** Se corrigieron valores negativos a positivos. Los valores faltantes se imputaron estratégicamente utilizando la **mediana de salario según el nivel educativo** del cliente. El tipo de dato final se estandarizó a entero (`int64`).
 * **Duplicados:** Detección y eliminación de registros repetidos.
@@ -28,16 +28,17 @@ El análisis se divide en 4 fases consecutivas reflejadas en el script:
 * Análisis de frecuencias relativas (%) y absolutas para variables categóricas esenciales (`Loyalty Card`, `Education`, `Marital Status`, `Gender`).
 
 ### 3. Visualización de Datos 📈
-El script genera respuestas visuales a las siguientes preguntas de negocio:
-1. **Estacionalidad:** Distribución mensual del total de vuelos reservados (Gráfico de barras).
-2. **Fidelización:** Relación entre la distancia recorrida y los puntos acumulados (Gráfico de dispersión/Scatter plot).
-3. **Geografía:** Distribución de clientes únicos según su provincia de residencia (Gráfico de barras horizontal).
-4. **Socioeconómico:** Comparativa del salario promedio anual por nivel educativo (Gráfico de barras jerárquico).
-5. **Segmentación:** Proporción de clientes según su tipo de tarjeta de fidelidad (Gráfico de tarta/Donut chart).
-6. **Demografía:** Distribución de clientes cruzando las variables de estado civil y género (Gráfico de barras agrupado).
+Se ha generado respuesta visual a las siguientes preguntas de negocio a través de distintos tipos de gráficas:
+1. **Estacionalidad:** Distribución mensual del total de vuelos reservados. Al sumar los vuelos por mes, este gráfico revela los picos de alta temporada (Verano y fiestas) y las temporadas bajas. Es la herramienta clave para que la aerolínea diseñe estrategias de precios dinámicos.
+2. **Fidelización:** Relación entre la distancia recorrida y los puntos acumulados. El gráfico de dispersión muestra una relación lineal. Esto confirma que el programa de fidelidad premia directamente el kilometraje volado.
+3. **Geografía:** Distribución de clientes únicos según su provincia de residencia. Al contar clientes únicos por provincia, este gráfico identifica los mercados principales de la aerolínea.
+4. **Socioeconómico:** Comparativa del salario promedio anual por nivel educativo.
+5. **Segmentación:** Proporción de clientes según su tipo de tarjeta de fidelidad.
+6. **Demografía:** Distribución de clientes cruzando las variables de estado civil y género. Cruzar el estado civil y el género te permite ver el perfil familiar del viajero donde predominan los clientes casados. Esto permite enfocar la publicidad hacia este sector.
 
 ### 4. Evaluación de Reservas por Nivel Educativo 🎓
 Se realiza un análisis específico para contrastar si el nivel académico influye en la frecuencia de vuelos reservados:
 * Agrupación de datos para calcular: conteo total, promedio, mediana y desviación estándar de vuelos por nivel educativo.
 * Generación de un gráfico de barras con **intervalos de confianza (CI)** para evaluar la significancia visual de las diferencias encontradas.
+
 
